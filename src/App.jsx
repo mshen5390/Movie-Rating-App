@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import MovieCard from "./MovieCard";
 import SearchIcon from "./Search.svg";
+import ProfileIcon from "./Profile.svg";
 import "./index.css";
 //OMDB API url for fetching data
 const API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=cec1f26b";
@@ -38,11 +39,20 @@ const App = () => {
 
     searchMovies(value);
   };
+  
 
   //return statement calling all the functions and producing the html
   return (
     <div className="app">
       <h1>The Watchers App</h1>
+
+      <div className="profile">
+
+        <img
+          src={ProfileIcon}
+          onClick={() => alert("will change later")}
+        />
+      </div>
 
       <div className="search">
         <input
@@ -56,6 +66,7 @@ const App = () => {
           // onClick={() => searchMovies(searchTerm)}
         />
       </div>
+      
 
       {movies?.length > 0 ? (
         <div className="container">
