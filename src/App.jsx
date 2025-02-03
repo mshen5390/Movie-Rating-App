@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 import SearchIcon from "./Search.svg";
 import ProfileIcon from "./Profile.svg";
-import User from "./User";
+import User from "./user";
 import "./index.css";
 //OMDB API url for fetching data
 const API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=cec1f26b";
@@ -44,48 +44,54 @@ const App = () => {
 
   //return statement calling all the functions and producing the html
   return (
-    <Router>
-      <div className="app">
-        <h1>The Watchers App</h1>
 
-        <div className="profile">
-          <Link to="/user">
-            <img src={ProfileIcon} alt="Profile Icon" />
-          </Link>
-        </div>
+    <div className="app">
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/user">Profile</Link>
+      </nav>     
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/user" element={<User />} />
+      </Routes>        
+      <h1>The Watchers App</h1>
 
-        <div className="search">
-          <input
-            value={searchTerm}
-            onChange={(e) => handleChange(e.target.value)}
-            placeholder="Search for Movies"
-          />
-          <img
-            src={SearchIcon}
-            // alt="search"
-            // onClick={() => searchMovies(searchTerm)}
-          />
-        </div>
-        
+      <div className="profile">
+        <Link to="/user">
+          <img src={ProfileIcon} alt="Profile Icon" />
+        </Link>
+      </div>
 
-        {movies?.length > 0 ? (
-          <div className="container">
-            {movies.map((movie) => (
-              <MovieCard movie={movie} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty">
-            <h2>No movies found</h2>
-          </div>
-        )}
-        <Routes>
-          <Route path="/user" element={<User />} />
-        </Routes>
+      <div className="search">
+        <input
+          value={searchTerm}
+          onChange={(e) => handleChange(e.target.value)}
+          placeholder="Search for Movies"
+        />
+        <img
+          src={SearchIcon}
+          // alt="search"
+          // onClick={() => searchMovies(searchTerm)}
+        />
       </div>
       
-    </Router>
-    );
+
+      {movies?.length > 0 ? (
+        <div className="container">
+          {movies.map((movie) => (
+            <MovieCard movie={movie} />
+          ))}
+        </div>
+      ) : (
+        <div className="empty">
+          <h2>No movies found</h2>
+        </div>
+      )}
+
+    </div>
+
+  
+  );
 };
 
 export default App;
