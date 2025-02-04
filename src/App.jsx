@@ -17,7 +17,7 @@ const App = () => {
   //calls searchMovies each render
   useEffect(() => {
     searchMovies();
-  }, []);
+  }, [searchTerm]);
 
   //fetches the movies data from the API syncronously
   const searchMovies = async (title) => {
@@ -50,10 +50,7 @@ const App = () => {
         <Link to="/">Home</Link>
         <Link to="/user">Profile</Link>
       </nav>     
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/user" element={<User />} />
-      </Routes>        
+      
       <h1>The Watchers App</h1>
 
       <div className="profile">

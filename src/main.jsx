@@ -9,6 +9,6 @@ root.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>
-)
+);
 
 // npm run dev (to run the vite server on a local host)
